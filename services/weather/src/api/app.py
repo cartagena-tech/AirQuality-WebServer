@@ -1,4 +1,4 @@
-# services/weather/src/api/weathers.py
+# services/weather/src/api/app.py
 
 from flask import Blueprint, jsonify, request, render_template
 from sqlalchemy import exc
