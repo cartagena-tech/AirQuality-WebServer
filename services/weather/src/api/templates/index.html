@@ -2,17 +2,55 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>AirQuality WebServer</title>
+    <title>AirQuality</title>
     <!-- meta -->
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <!-- styles -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+          crossorigin="anonymous"
+    >
     {% block css %}{% endblock %}
   </head>
   <body>
-    
+      <div class="container">
+      <div class="">
+        <br>
+        <h1 class="title"> AirQuality Station</h1>
+        <hr><br>
+        <form action="/station" method="POST">
+          <div class="field">
+            <input
+              name="temperature" class="form-control"
+              type="number" placeholder="Enter  temperature" required>
+          </div>
+          <div class="field">
+            <input
+              name="humidity" class="form-control"
+              type="number" placeholder="Enter  humidity " required>
+          </div>
+          <input
+            type="submit" class="btn btn-primary"
+            value="Submit">
+        </form>
+        <br>
+        <hr>
+          {% if stations %}
+            <ul>
+              {% for station in stations %}
+               <li> Temperature:  {{station.temperature}}</li>
+               <li> Humidity: {{station.humidity}} </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p>No data!</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
     </script>
     {% block js %}{% endblock %}
   </body>
