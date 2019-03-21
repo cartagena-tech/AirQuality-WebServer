@@ -31,6 +31,11 @@
               name="humidity" class="form-control"
               type="number" placeholder="Enter  humidity " required>
           </div>
+          <div class="field">
+            <input
+              name="pm2" class="form-control"
+              type="number" placeholder="Enter  pm2 " required>
+          </div>
           <input
             type="submit" class="btn btn-primary"
             value="Submit">
@@ -42,6 +47,7 @@
               {% for station in stations %}
                <li> Temperature:  {{station.temperature}}</li>
                <li> Humidity: {{station.humidity}} </li>
+                <li> PM2:{{station.pm}} </li>
               {% endfor %}
             </ul>
           {% else %}

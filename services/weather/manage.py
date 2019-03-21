@@ -18,8 +18,8 @@ def recreate_db():
 @cli.command('seed_db')
 def seed_db():
     """Seeds the database"""
-    db.session.add(Station(temperature=25.8, humidity=58.3))
-    db.session.add(Station(temperature=28.6, humidity=45.6))
+    db.session.add(Station(temperature=25.8, humidity=58.3,pm=20))
+    db.session.add(Station(temperature=28.6, humidity=45.6,pm=2.3))
     db.session.commit()
 
 

@@ -31,7 +31,8 @@ def index():
     if request.method == 'POST':
         temperature = request.form['temperature']
         humidity = request.form['humidity']
-        db.session.add(Station(temperature=temperature, humidity=humidity))
+        pm2 = request.form['pm2']
+        db.session.add(Station(temperature=temperature, humidity=humidity,pm=pm2))
         db.session.commit()
     stations = Station.query.all()
     return render_template('index.html', stations=stations)
@@ -44,10 +45,13 @@ def create_station():
     """
     temperature = request.args.get('temperature')
     humidity = request.args.get('humidity')
+    pm2 = request.args.get('pm2')
+
     try:
         station=Station(
                 temperature=temperature,
-                humidity=humidity       
+                humidity=humidity,
+                pm=pm2       
         )
         db.session.add(station)
         db.session.commit()
