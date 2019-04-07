@@ -7,7 +7,7 @@ from flask import Blueprint, jsonify, request, render_template
 from sqlalchemy import exc
 
 # Models
-from src.api.models import Station
+from src.api.models import CurrentCondition
 # Instance db
 from src import db
 
@@ -23,19 +23,11 @@ def home():
     })
 
 
-@stations_blueprint.route('/station', methods=['GET', 'POST'])
+@stations_blueprint.route('/app', methods=['GET', 'POST'])
 def index():
-    """ Index station.
-      create station from forms and list all station data in template
+    """ Index app.
     """
-    if request.method == 'POST':
-        temperature = request.form['temperature']
-        humidity = request.form['humidity']
-        pm2 = request.form['pm2']
-        db.session.add(Station(temperature=temperature, humidity=humidity,pm=pm2))
-        db.session.commit()
-    stations = Station.query.all()
-    return render_template('index.html', stations=stations)
+    return render_template('index.html')
 
 
 @stations_blueprint.route('/station/create',methods=['GET'])
@@ -48,10 +40,10 @@ def create_station():
     pm2 = request.args.get('pm2')
 
     try:
-        station=Station(
+        station=CurrentCondition(
                 temperature=temperature,
                 humidity=humidity,
-                pm=pm2       
+                pm=pm2
         )
         db.session.add(station)
         db.session.commit()
@@ -71,7 +63,7 @@ def get_data_station():
     response_object = {
         'status': 'success',
         'weather': {
-            'station': [station.to_json() for station in Station.query.all()]
+            'station': [station.to_json() for station in CurrentCondition.query.all()]
         }
     }
     return jsonify(response_object), 200
