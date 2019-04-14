@@ -43,7 +43,8 @@ def create_station():
         station=CurrentCondition(
                 temperature=temperature,
                 humidity=humidity,
-                pm=pm2
+                pm=pm2,
+                station=1
         )
         db.session.add(station)
         db.session.commit()

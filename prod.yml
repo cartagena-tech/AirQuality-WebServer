@@ -1,0 +1,42 @@
+version: '3.7'
+
+services:
+
+  weather:
+    container_name: weather
+    build:
+      context: ./services/weather
+      dockerfile: Dockerfile-prod
+    expose:
+      - '5000'
+    environment:
+      - APP_SETTINGS=project.config.ProductionConfig
+      - DATABASE_URL=postgres://postgres:postgres@weather-db:5432/weather_prod
+      - DATABASE_TEST_URL=postgres://postgres:postgres@weather-db:5432/weather_test
+      - SECRET_KEY=${SECRET_KEY}
+    depends_on:
+      - weather-db
+    links:
+      - weather-db
+
+  weather-db:
+    container_name: weather-db
+    build:
+      context: ./services/weather/project/db
+      dockerfile: Dockerfile
+    ports:
+      - 5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+  nginx:
+    container_name: nginx
+    build: ./services/nginx
+    restart: always
+    ports:
+      - 80:80
+    depends_on:
+      - weather
+    links:
+      - weather
