@@ -12,7 +12,7 @@ services:
       - 5000:5000
     environment:
       - FLASK_ENV=development
-      - APP_SETTINGS=src.config.DevelopmentConfig  
+      - APP_SETTINGS=src.config.DevelopmentConfig
       - DATABASE_URL=postgres://postgres:postgres@weather-db:5432/weather_dev
       - DATABASE_TEST_URL=postgres://postgres:postgres@weather-db:5432/weather_test
     depends_on:
@@ -27,3 +27,4 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+      

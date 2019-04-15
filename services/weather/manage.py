@@ -19,8 +19,8 @@ def recreate_db():
 def seed_db():
     """Seeds the database"""
     db.session.add(Station(name='Santa lucia',latitude=10.398,longitude=-75.483,description='description'))
-    db.session.add(CurrentCondition(temperature=25.8, humidity=58.3,pm=35,station=1))
-    db.session.add(CurrentCondition(temperature=28.6, humidity=45.6,pm=55.5,station=1))
+    #db.session.add(CurrentCondition(temperature=25.8, humidity=58.3,pm=35,station=1))
+    #db.session.add(CurrentCondition(temperature=28.6, humidity=45.6,pm=55.5,station=1))
     db.session.commit()
 
 

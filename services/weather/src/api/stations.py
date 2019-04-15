@@ -38,13 +38,14 @@ def create_station():
     temperature = request.args.get('temperature')
     humidity = request.args.get('humidity')
     pm2 = request.args.get('pm2')
+    station = request.args.get('station')
 
     try:
         station=CurrentCondition(
                 temperature=temperature,
                 humidity=humidity,
                 pm=pm2,
-                station=1
+                station=station
         )
         db.session.add(station)
         db.session.commit()
