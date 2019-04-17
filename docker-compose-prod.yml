@@ -15,7 +15,7 @@ services:
       - DATABASE_TEST_URL=postgres://postgres:postgres@weather-db:5432/weather_test
     depends_on:
       - weather-db
-      
+
   weather-db:
     build:
       context: ./services/weather/src/db

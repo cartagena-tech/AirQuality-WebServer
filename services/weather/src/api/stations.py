@@ -18,7 +18,7 @@ stations_blueprint = Blueprint('stations',__name__,template_folder='./templates'
 @home_blueprint.route('/', methods=['GET'])
 def home():
     return jsonify({
-        'API': 'Weather',
+        'API': 'Cartagena Tech Weather',
         'version': 'v1!'
     })
 

@@ -24,7 +24,14 @@ services:
       dockerfile: Dockerfile
     ports:
       - 5436:5432
+    volumes:
+      - local_postgres_data:/var/lib/postgresql/data
+      - local_postgres_data_backups:/backups
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      
+
+
+volumes:
+  local_postgres_data: {}
+  local_postgres_data_backups: {}
